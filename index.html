@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Egypt Hotels</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="logo"><h1>Egypt Hotels</h1></div>
+  </header>
+
+  <main>
+    <section class="search">
+      <h2>Find Your Hotel</h2>
+      <form action="hotels.php" method="GET">
+        <input type="text" name="location" placeholder="Location" required>
+        <input type="number" name="min_price" placeholder="Min price">
+        <input type="number" name="max_price" placeholder="Max price">
+        <input type="number" name="min_rating" placeholder="Min rating" step="0.1" min="1" max="5">
+        <button type="submit">Search</button>
+      </form>
+    </section>
+
+    <section class="hotel-card">
+      <img src="images/Cairo-luxury-hotel.jpg" alt="Hotel Example">
+      <div class="hotel-card-content">
+        <h2>Downtown Cairo</h2>
+        <p>Located in the heart of Cairo with modern rooms and stunning Nile views.</p>
+      </div>
+    </section>
+
+    <section class="hotel-card">
+      <img src="images/Sharm-el-sheikh-resort.jpg" alt="Hotel Example">
+      <div class="hotel-card-content">
+        <h2>Hilton Hotel</h2>
+        <p>Beachfront resort with pools, restaurants, and relaxing vibes.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy

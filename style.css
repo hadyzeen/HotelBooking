@@ -1,0 +1,205 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Body Styling */
+body {
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header */
+header {
+    background-color: #0B1C2C;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+header .logo h1 {
+    margin: 0;
+    font-size: 2em;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 10px 0;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #E5E5E5;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    color: #3388FF;
+}
+
+/* Login Form Container */
+form.login-form {
+    background: #ffffff;
+    max-width: 450px;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+form.login-form h2 {
+    margin-bottom: 20px;
+    color: #0B1C2C;
+    text-align: center;
+}
+
+/* Register Form Container */
+form.register-form {
+    background: #ffffff;
+    max-width: 450px;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+form.register-form h2 {
+    margin-bottom: 20px;
+    color: #0B1C2C;
+    text-align: center;
+}
+
+/* Form Inputs */
+form.login-form input[type="email"],
+form.login-form input[type="password"],
+form.register-form input[type="text"],
+form.register-form input[type="email"],
+form.register-form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+/* Submit Button */
+form.login-form .submit-btn,
+form.register-form .submit-btn {
+    width: 100%;
+    padding: 14px;
+    margin-top: 20px;
+    background-color: #3388FF;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+form.login-form .submit-btn:hover,
+form.register-form .submit-btn:hover {
+    background-color: #0B1C2C;
+}
+
+/* “Create Account” / “Login” Link Inside Forms */
+form.login-form .create-account,
+form.register-form .create-account {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 0.9em;
+    color: #555;
+}
+
+form.login-form .create-account a,
+form.register-form .create-account a {
+    color: #3388FF;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+form.login-form .create-account a:hover,
+form.register-form .create-account a:hover {
+    text-decoration: underline;
+}
+
+/* Hotel Cards (for later use) */
+.hotel-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+    margin: 20px auto;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s;
+}
+
+.hotel-card:hover {
+    transform: scale(1.01);
+}
+
+.hotel-card img {
+    width: 100%;
+    height: auto;
+}
+
+.hotel-card-content {
+    padding: 15px;
+}
+
+.hotel-card-content h2 {
+    margin-bottom: 10px;
+    color: #0B1C2C;
+}
+
+.hotel-card-content p {
+    color: #555;
+}
+
+/* Footer */
+footer {
+    background-color: #1B1B1B;
+    color: #ccc;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+/* Hero Section (for later use) */
+.hero {
+    background: url('images/hero-egypt.jpg') no-repeat center center/cover;
+    color: white;
+    text-align: center;
+    padding: 120px 20px;
+    position: relative;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    height: 100%; width: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 0;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+    margin: 0 auto;
+}

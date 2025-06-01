@@ -2,7 +2,7 @@
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
-    header("Location: homepage.php");
+    echo "Invalid request method.";
     exit;
 }
 
@@ -14,35 +14,30 @@ if (empty($email) || empty($password)) {
     exit;
 }
 
-$conn = new mysqli("localhost:3307", "root", "", "hotel_booking");
+$conn = new mysqli("localhost", "root", "", "hotel_booking");
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    echo "Connection failed: " . $conn->connect_error;
+    exit;
 }
 
-$stmt = $conn->prepare("SELECT id, first_name, password FROM guest WHERE email = ?");
+$stmt = $conn->prepare("SELECT guest_id, first_name, password FROM guest WHERE email = ?");
 $stmt->bind_param("s", $email);
 $stmt->execute();
 $stmt->store_result();
 
 if ($stmt->num_rows === 1) {
-    $stmt->bind_result($id, $first_name, $db_password);
+    $stmt->bind_result($guest_id, $first_name, $db_password);
     $stmt->fetch();
 
-    if ($password === $db_password) {
-        // Success
-        $_SESSION['guest_id'] = $id;
+    if (password_verify($password, $db_password)) {
+        $_SESSION['guest_id'] = $guest_id;
         $_SESSION['guest_name'] = $first_name;
-        header("Location: homepage.php");
-        exit;
+        echo "success";
     } else {
-        // Wrong password
-        echo "<script>alert('Incorrect password.'); window.location.href='index.html';</script>";
-        exit;
+        echo "Incorrect password.";
     }
 } else {
-    // Email not found
-    echo "<script>alert('No user found with that email.'); window.location.href='index.html';</script>";
-    exit;
+    echo "No user found with that email.";
 }
 
 $stmt->close();

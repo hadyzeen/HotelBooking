@@ -1,44 +1,49 @@
+<?php
+session_start();
+if (!isset($_SESSION['guest_id'])) {
+    header("Location: login.html");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-<head> 
+<head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Egypt Hotels</title>
+  <title>Hotels</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <div class="logo"><h1>Egypt Hotels</h1></div>
-  </header>
+<div class="top-bar">
+  <h1 class="hotel-heading">BOOK YOUR HOTEL NOW</h1>
+  <a href="profile.php" class="btn-profile">Profile</a>
+</div>
 
-  <main>
-    <section class="search">
-      <h2>Find Your Hotel</h2>
-      <form action="hotels.php" method="GET">
-        <input type="text" name="location" placeholder="Location" required>
-        <input type="number" name="min_price" placeholder="Min price">
-        <input type="number" name="max_price" placeholder="Max price">
-        <input type="number" name="min_rating" placeholder="Min rating" step="0.1" min="1" max="5">
-        <button type="submit">Search</button>
-      </form>
-    </section>
 
-    <section class="hotel-card">
-      <img src="images/Cairo-luxury-hotel.jpg" alt="Hotel Example">
-      <div class="hotel-card-content">
-        <h2>Downtown Cairo</h2>
-        <p>Located in the heart of Cairo with modern rooms and stunning Nile views.</p>
-      </div>
-    </section>
+  <div class="hotel-grid">
+    <?php
+    $conn = new mysqli("localhost", "root", "", "hotel_booking");
 
-    <section class="hotel-card">
-      <img src="images/Sharm-el-sheikh-resort.jpg" alt="Hotel Example">
-      <div class="hotel-card-content">
-        <h2>Hilton Hotel</h2>
-        <p>Beachfront resort with pools, restaurants, and relaxing vibes.</p>
-      </div>
-    </section>
-  </main>
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
 
-  <footer>
-    <p>&copy
+    $result = $conn->query("SELECT * FROM hotels");
+
+    while ($row = $result->fetch_assoc()) {
+        echo "<div class='hotel-card'>";
+        echo "<a href='hotel_details.php?id=" . $row['id'] . "'>";
+        echo "<img src='" . $row['image_url'] . "' alt='Hotel image'>";
+        echo "<h2>" . htmlspecialchars($row['hotel_name']) . "</h2>";
+        echo "<p>" . htmlspecialchars($row['location']) . "</p>";
+        echo "</a>";
+        echo "</div>";
+    }
+
+    $conn->close();
+    ?>
+  </div>
+</body>
+</html>
